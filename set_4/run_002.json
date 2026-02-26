@@ -1,0 +1,306 @@
+{
+    "run_info": {
+        "run_id": "SET4-R02-9BDCE0",
+        "graph_id": "GRAPH_17",
+        "status": "SUCCESS",
+        "total_ms": 3194,
+        "timestamp": "2026-02-11T16:06:46.909662"
+    },
+    "execution_trace": [
+        {
+            "step": 1,
+            "block_id": "B_EXTERNALCALL_00",
+            "class": "ExternalCall",
+            "duration_ms": 1026,
+            "input": {
+                "raw": 525.1741751260147
+            },
+            "output": {
+                "raw": 568.4770415387123
+            },
+            "triggered_links": [
+                "L_00_01"
+            ]
+        },
+        {
+            "step": 2,
+            "block_id": "B_MULTIPLY_01",
+            "class": "Multiply",
+            "duration_ms": 18,
+            "input": {
+                "raw": 568.4770415387123
+            },
+            "output": {
+                "raw": 569.0753145224445
+            },
+            "triggered_links": [
+                "L_01_02"
+            ]
+        },
+        {
+            "step": 3,
+            "block_id": "B_VALIDATOR_02",
+            "class": "Validator",
+            "duration_ms": 43,
+            "input": {
+                "raw": 569.0753145224445
+            },
+            "output": {
+                "raw": 573.0365983827136
+            },
+            "triggered_links": [
+                "L_02_03"
+            ]
+        },
+        {
+            "step": 4,
+            "block_id": "B_DIVIDE_03",
+            "class": "Divide",
+            "duration_ms": 13,
+            "input": {
+                "raw": 573.0365983827136
+            },
+            "output": {
+                "raw": 582.9653448436624
+            },
+            "triggered_links": [
+                "L_03_04"
+            ]
+        },
+        {
+            "step": 5,
+            "block_id": "B_IF_04",
+            "class": "If",
+            "duration_ms": 3,
+            "input": {
+                "raw": 582.9653448436624
+            },
+            "output": {
+                "raw": 629.7626306415333
+            },
+            "triggered_links": [
+                "L_04_05"
+            ]
+        },
+        {
+            "step": 6,
+            "block_id": "B_WRITEVAR_05",
+            "class": "WriteVar",
+            "duration_ms": 11,
+            "input": {
+                "raw": 629.7626306415333
+            },
+            "output": {
+                "raw": 647.4089640196589
+            },
+            "triggered_links": [
+                "L_05_06"
+            ]
+        },
+        {
+            "step": 7,
+            "block_id": "B_IF_06",
+            "class": "If",
+            "duration_ms": 5,
+            "input": {
+                "raw": 647.4089640196589
+            },
+            "output": {
+                "raw": 594.604123115167
+            },
+            "triggered_links": [
+                "L_06_07"
+            ]
+        },
+        {
+            "step": 8,
+            "block_id": "B_FILTER_07",
+            "class": "Filter",
+            "duration_ms": 19,
+            "input": {
+                "raw": 594.604123115167
+            },
+            "output": {
+                "raw": 650.3291511996366
+            },
+            "triggered_links": [
+                "L_07_08"
+            ]
+        },
+        {
+            "step": 9,
+            "block_id": "B_AGGREGATE_08",
+            "class": "Aggregate",
+            "duration_ms": 1962,
+            "input": {
+                "raw": 650.3291511996366
+            },
+            "output": {
+                "raw": 635.8905413719822
+            },
+            "triggered_links": [
+                "L_08_09"
+            ]
+        },
+        {
+            "step": 10,
+            "block_id": "B_MULTIPLY_09",
+            "class": "Multiply",
+            "duration_ms": 17,
+            "input": {
+                "raw": 635.8905413719822
+            },
+            "output": {
+                "raw": 618.729266273723
+            },
+            "triggered_links": [
+                "L_09_10"
+            ]
+        },
+        {
+            "step": 11,
+            "block_id": "B_TRANSFORMER_10",
+            "class": "Transformer",
+            "duration_ms": 34,
+            "input": {
+                "raw": 618.729266273723
+            },
+            "output": {
+                "raw": 590.4385694225883
+            },
+            "triggered_links": [
+                "L_10_11"
+            ]
+        },
+        {
+            "step": 12,
+            "block_id": "B_DIVIDE_11",
+            "class": "Divide",
+            "duration_ms": 8,
+            "input": {
+                "raw": 590.4385694225883
+            },
+            "output": {
+                "raw": 537.6610090460397
+            },
+            "triggered_links": [
+                "L_11_12"
+            ]
+        },
+        {
+            "step": 13,
+            "block_id": "B_MULTIPLY_12",
+            "class": "Multiply",
+            "duration_ms": 5,
+            "input": {
+                "raw": 537.6610090460397
+            },
+            "output": {
+                "raw": 583.3359651859312
+            },
+            "triggered_links": [
+                "L_12_13"
+            ]
+        },
+        {
+            "step": 14,
+            "block_id": "B_MULTIPLY_13",
+            "class": "Multiply",
+            "duration_ms": 10,
+            "input": {
+                "raw": 583.3359651859312
+            },
+            "output": {
+                "raw": 601.1453383861281
+            },
+            "triggered_links": [
+                "L_13_14"
+            ]
+        },
+        {
+            "step": 15,
+            "block_id": "B_MULTIPLY_14",
+            "class": "Multiply",
+            "duration_ms": 20,
+            "input": {
+                "raw": 601.1453383861281
+            },
+            "output": {
+                "raw": 656.0419488132582
+            },
+            "triggered_links": []
+        }
+    ],
+    "link_data": [
+        {
+            "link_id": "L_00_01",
+            "traversed": true,
+            "value": 568.4770415387123
+        },
+        {
+            "link_id": "L_01_02",
+            "traversed": true,
+            "value": 569.0753145224445
+        },
+        {
+            "link_id": "L_02_03",
+            "traversed": true,
+            "value": 573.0365983827136
+        },
+        {
+            "link_id": "L_03_04",
+            "traversed": true,
+            "value": 582.9653448436624
+        },
+        {
+            "link_id": "L_04_05",
+            "traversed": true,
+            "value": 629.7626306415333
+        },
+        {
+            "link_id": "L_05_06",
+            "traversed": true,
+            "value": 647.4089640196589
+        },
+        {
+            "link_id": "L_06_07",
+            "traversed": true,
+            "value": 594.604123115167
+        },
+        {
+            "link_id": "L_07_08",
+            "traversed": true,
+            "value": 650.3291511996366
+        },
+        {
+            "link_id": "L_08_09",
+            "traversed": true,
+            "value": 635.8905413719822
+        },
+        {
+            "link_id": "L_09_10",
+            "traversed": true,
+            "value": 618.729266273723
+        },
+        {
+            "link_id": "L_10_11",
+            "traversed": true,
+            "value": 590.4385694225883
+        },
+        {
+            "link_id": "L_11_12",
+            "traversed": true,
+            "value": 537.6610090460397
+        },
+        {
+            "link_id": "L_12_13",
+            "traversed": true,
+            "value": 583.3359651859312
+        },
+        {
+            "link_id": "L_13_14",
+            "traversed": true,
+            "value": 601.1453383861281
+        }
+    ]
+}
