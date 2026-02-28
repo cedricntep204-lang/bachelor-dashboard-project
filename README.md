@@ -40,3 +40,21 @@ Le système se compose de deux parties principales :
 ```bash
 git clone <url>
 cd bachelor-dashboard-project
+
+### 2 Créer et activer l’environnement
+conda create -n graph-profiler python=3.10
+conda activate graph-profiler
+pip install pandas streamlit
+
+### 3 Lancer le pipeline
+python pipeline_iot.py
+
+### 4 Lancer le dashboard
+streamlit run app.py
+
+
+Contributions: 
+Cedric : Structure du projet, pipeline d’analyse, gestion Git, coordination
+Evan :Développement du dashboard Streamlit
+Ali :
+Mohamed :
