@@ -56,5 +56,5 @@ streamlit run app.py
 Contributions: 
 Cedric : Structure du projet, pipeline d’analyse, gestion Git, coordination
 Evan :Développement du dashboard Streamlit
-Ali :
-Mohamed :
+Ali :Visualisations et amélioration UX
+Mohamed :Tests et validation des données
