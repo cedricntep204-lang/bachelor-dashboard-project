@@ -44,7 +44,7 @@ for nom_fichier in os.listdir(dossier_json):
             # -------- EXECUTION TRACE --------
             execution_trace = data.get("execution_trace", [])
 
-            for bloc in in enumerate(execution_trace):
+            for bloc in enumerate(execution_trace):
                 data_list.append({
                     "run_id": run_id,
                     "block_id": bloc.get("block_id", ""),
