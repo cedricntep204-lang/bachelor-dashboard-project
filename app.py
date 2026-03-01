@@ -34,15 +34,18 @@ col_left, col_right = st.columns(2)
 
 with col_left:
     # Graphique SUCCESS vs ERROR (Basé sur df_run pour le run actuel)
-    stats = df_run['status'].value_counts()
-    fig_pie = go.Figure(data=[go.Pie(
-        labels=stats.index, 
-        values=stats.values, 
-        hole=.5,
-        marker_colors=['#2ecc71', '#e74c3c']
-    )])
-    fig_pie.update_layout(title_text=f"Fiabilité du run : {run_id}")
-    st.plotly_chart(fig_pie, use_container_width=True)
+    if 'status' in df_run.columns:
+        stats = df_run['status'].value_counts()
+        fig_pie = go.Figure(data=[go.Pie(
+            labels=stats.index, 
+            values=stats.values, 
+            hole=.5,
+            marker_colors=['#2ecc71', '#e74c3c']
+        )])
+        fig_pie.update_layout(title_text=f"Fiabilité du run : {run_id}")
+        st.plotly_chart(fig_pie, use_container_width=True)
+    else:
+        st.info("Colonne 'status' introuvable : impossible d'afficher le graphique de fiabilité.")
 
 with col_right:
     # Top 3 blocs les plus lents du run
@@ -59,12 +62,16 @@ with col_right:
 st.subheader(f"Timeline détaillée : {run_id}")
 start_time = datetime.datetime(2026, 1, 1, 0, 0, 0)
 df_run['start_time'] = start_time
+# si la colonne status manque, on la crée pour éviter les erreurs
+if 'status' not in df_run.columns:
+    df_run['status'] = 'UNKNOWN'
+
 df_run['end_time'] = df_run['start_time'] + pd.to_timedelta(df_run['duration_ms'], unit='ms')
 
 fig_gantt = px.timeline(
     df_run, x_start="start_time", x_end="end_time", y="block_id", 
     color="status", # Couleur par statut pour l'UX
-    color_discrete_map={"SUCCESS": "#2ecc71", "ERROR": "#e74c3c"}
+    color_discrete_map={"SUCCESS": "#2ecc71", "ERROR": "#e74c3c", "UNKNOWN": "#95a5a6"}
 )
 fig_gantt.update_yaxes(autorange="reversed")
 st.plotly_chart(fig_gantt, use_container_width=True)
