@@ -11,6 +11,8 @@ st.title("Tableau de bord - Performance IoT")
 # 1. Charger les données
 try:
     df = pd.read_csv("extracted_blocks.csv")
+    if 'status' not in df.columns:
+        df['status'] = 'UNKNOWN'     #Evan (pour plus que ca affiche le message d'erreur)
     # Ajout Ali : Extraction du type de classe pour l'analyse globale
     df['class_type'] = df['block_id'].str.split('_').str[1].fillna('OTHER')
 except FileNotFoundError:
