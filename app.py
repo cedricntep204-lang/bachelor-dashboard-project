@@ -19,8 +19,12 @@ except FileNotFoundError:
     st.error("Le fichier 'extracted_blocks.csv' est introuvable.")
     st.stop()
   
-# 2. --- ANALYSE STATISTIQUE GLOBALE --- # Cedric (Grâce au traitement global par Pandas, j'ai identifié que le bloc B_AGGREGATE_01 est le point critique du système avec une latence moyenne de 36s, ce qui impacte directement le temps total d'exécution des runs et la réactivité globale du système. En se concentrant sur l'optimisation de ce bloc, on pourrait potentiellement réduire significativement les temps d'exécution et améliorer la performance globale du système IoT.)
-st.header("🔍 Diagnostic de Performance Global (50 Runs)")
+# 2. --- ANALYSE STATISTIQUE GLOBALE --- # Cedric (Grâce au traitement global par Pandas, 
+# j'ai identifié que le bloc B_AGGREGATE_01 est le point critique du système avec une latence moyenne de 36s, 
+# ce qui impacte directement le temps total d'exécution des runs et la réactivité globale du système. 
+# En se concentrant sur l'optimisation de ce bloc, on pourrait potentiellement réduire significativement les temps d'exécution 
+# et améliorer la performance globale du système IoT.)
+st.header(" Diagnostic de Performance Global (50 Runs)")
 
 # Calcul des stats sur TOUT le dataframe 'df'
 global_stats = df.groupby("block_id")["duration_ms"].agg(["mean", "max"]).reset_index()
