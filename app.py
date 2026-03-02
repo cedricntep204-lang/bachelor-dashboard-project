@@ -18,8 +18,36 @@ try:
 except FileNotFoundError:
     st.error("Le fichier 'extracted_blocks.csv' est introuvable.")
     st.stop()
+  
+# 2. --- ANALYSE STATISTIQUE GLOBALE --- # Cedric (Grâce au traitement global par Pandas, j'ai identifié que le bloc B_AGGREGATE_01 est le point critique du système avec une latence moyenne de 36s, ce qui impacte directement le temps total d'exécution des runs et la réactivité globale du système. En se concentrant sur l'optimisation de ce bloc, on pourrait potentiellement réduire significativement les temps d'exécution et améliorer la performance globale du système IoT.)
+st.header("🔍 Diagnostic de Performance Global (50 Runs)")
 
-# 2. KPIs Généraux
+# Calcul des stats sur TOUT le dataframe 'df'
+global_stats = df.groupby("block_id")["duration_ms"].agg(["mean", "max"]).reset_index()
+global_stats = global_stats.sort_values("mean", ascending=False).head(5)
+
+col_glob1, col_glob2 = st.columns([1, 2])
+
+with col_glob1:
+    st.subheader("Bottleneck Identifié")
+    # On récupère le nom du pire bloc
+    worst_block = global_stats.iloc[0]["block_id"]
+    worst_value = global_stats.iloc[0]["mean"]
+    st.error(f"Le bloc le plus lent est : **{worst_block}**")
+    st.metric("Latence Moyenne", f"{worst_value:.2f} ms")
+
+with col_glob2:
+    # Graphique des 5 blocs les plus lents sur tout le dataset
+    fig_global = px.bar(
+        global_stats, x='mean', y='block_id', orientation='h',
+        title="Top 5 des latences moyennes (Global)",
+        labels={'mean': 'Moyenne (ms)', 'block_id': 'ID du Bloc'},
+        color='mean', color_continuous_scale='OrRd'
+    )
+    st.plotly_chart(fig_global, use_container_width=True)
+st.divider()
+
+# KPIs Généraux
 col_kpi1, col_kpi2 = st.columns(2)
 with col_kpi1:
     st.metric("Temps moyen global", f"{df['duration_ms'].mean():.2f} ms")
