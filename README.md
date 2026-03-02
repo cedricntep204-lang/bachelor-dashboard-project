@@ -1,60 +1,69 @@
-#  Tableau de Bord – Performance IoT
+Data-Profiler IoT – Observabilité & Performance
 
-##  Description du projet
+Description du projet
+Ce projet d'Observabilité Experte a pour objectif d'analyser 50 rapports d'exécution IoT (logs JSON) pour identifier les goulots d'étranglement (hotspots). Il permet de transformer des données brutes en un diagnostic visuel et chiffré pour faciliter la prise de décision automatisée.
 
-Ce projet a pour objectif d’analyser des logs d’exécution IoT à partir de fichiers JSON, d’extraire des métriques de performance et de les visualiser via un dashboard interactif développé avec Streamlit.
+ Architecture du projet
 
-Le système se compose de deux parties principales :
-- Un pipeline d’analyse de données (pipeline_iot.py)
-- Un dashboard interactif (app.py)
+Le système suit une chaîne de valeur rigoureuse : JSON Raw Logs → Pandas → Data Analytics → Plotly → Streamlit.
 
----
+Extraction & Ingestion (pipeline_iot.py) :
 
-##  Architecture du projet
+Parcours automatisé du dossier set_4.
 
-1. Extraction des données JSON
-2. Analyse des performances :
-   - Informations globales des runs (run_info)
-   - Chronologie d’exécution (execution_trace)
-   - Analyse des flux (link_data)
-3. Génération de fichiers CSV
-4. Visualisation interactive via Streamlit
+Gestion robuste des erreurs via try/except pour isoler les fichiers corrompus.
 
----
+Extraction des run_info, execution_trace et link_data vers des fichiers CSV.
 
-##  Fonctionnalités du Dashboard
+Visualisation Interactive (app.py) :
 
-- Indicateurs globaux (temps moyen, nombre de runs)
-- Sélection dynamique d’un Run ID
-- Timeline d’exécution (diagramme de Gantt)
-- Top 3 blocs les plus lents
-- Répartition SUCCESS vs ERROR
-- Moyenne des performances par type de classe
+Dashboard Streamlit intégrant des KPIs globaux et un filtrage dynamique par Run ID.
 
----
+ Diagnostic de Performance 
 
-##  Installation
+L'analyse statistique sur l'ensemble du dataset a permis d'identifier précisément le goulot d'étranglement :
 
-### 1️ Cloner le repository
+Bottleneck identifié : B_AGGREGATE_01 (ou B_AGGREGATE_02 selon le run).
 
-```bash
-git clone <url>
-cd bachelor-dashboard-project
+Constat : La classe AGGREGATE présente les latences les plus critiques (moyenne > 36s).
 
-### 2 Créer et activer l’environnement
-conda create -n graph-profiler python=3.10
+ Installation et Lancement
+1️ Cloner le repository
+
+Bash
+git clone https://github.com/cedricntep204-lang/PT_IOT.git
+cd PT_IOT
+2️ Configurer l'environnement Conda
+
+Bash
+conda create -n graph-profiler python=3.11 -y
 conda activate graph-profiler
-pip install pandas streamlit
 
-### 3 Lancer le pipeline
-python pipeline_iot.py
+3️ Installer les dépendances
 
-### 4 Lancer le dashboard
-streamlit run app.py
+Bash
+pip install -r requirements.txt
 
+4️ Exécuter le projet
 
-Contributions: 
-Cedric : Structure du projet, pipeline d’analyse, gestion Git, coordination
-Evan :Développement du dashboard Streamlit
-Ali :Visualisations et amélioration UX
-Mohamed :Tests et validation des données
+Générer les données : python pipeline_iot.py
+
+Lancer le Dashboard : streamlit run app.py
+
+Fonctionnalités du Dashboard
+
+Indicateurs globaux : Temps moyen et volume de runs traités.
+
+Timeline d'exécution : Diagramme de Gantt interactif via Plotly.
+
+Analyse de dispersion : Box plots identifiant la stabilité par classe de traitement.
+
+Contributions
+
+Cedric : Architecture du projet, pipeline d’analyse ETL, gestion Git.
+
+Evan : Développement du dashboard Streamlit et logique UI.
+
+Ali : Visualisations expertes (Plotly) et amélioration de l'UX.
+
+Mohamed : Tests de robustesse et validation des données.
